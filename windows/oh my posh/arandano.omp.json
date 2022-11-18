@@ -1,0 +1,104 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "background": "#424242",
+                    "foreground": "#9B6BDF",
+                    "leading_diamond": "\ue0b6",
+                    "style": "diamond",
+                    "template": "λ <#BAABDA>{{ .UserName }}</> <#D3DEDC>@</> <cyan>{{ .HostName }}</> \u276f",
+                    "trailing_diamond": "\ue0b4 ",
+                    "type": "session"
+                },
+                {
+                    "background": "#424242",
+                    "foreground": "lightYellow",
+                    "leading_diamond": "\ue0b6",
+                    "properties": {
+                        "style": "full"
+                    },
+                    "style": "diamond",
+                    "template": "\ue5ff {{ .Path }}",
+                    "trailing_diamond": "\ue0b4",
+                    "type": "path"
+                },
+                {
+                    "background": "#424242",
+                    "foreground": "#43CCEA",
+                    "leading_diamond": " \ue0b6",
+                    "style": "diamond",
+                    "template": "On {{.UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}",
+                    "trailing_diamond": "\ue0b4",
+                    "type": "git"
+                },
+                {
+                    "background": "#424242",
+                    "foreground": "#42E66C",
+                    "leading_diamond": " \ue0b6",
+                    "style": "diamond",
+                    "template": "\ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}",
+                    "trailing_diamond": "\ue0b4",
+                    "type": "node"
+                },
+                {
+                    "background": "#424242",
+                    "foreground": "#E64747",
+                    "leading_diamond": " \ue0b6",
+                    "style": "diamond",
+                    "template": "\ue738 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+                    "trailing_diamond": "\ue0b4",
+                    "type": "java"
+                },
+                {
+                    "background": "#424242",
+                    "foreground": "#81C6E8",
+                    "leading_diamond": " \ue0b6",
+                    "style": "diamond",
+                    "properties": {
+                        "display_mode": "files",
+                        "fetch_virtual_env": false
+                    },
+                    "template": "\uE235{{ if .Error }}{{ .Error }}{{ else }} <#FFE9AE>{{ if .Venv }}{{ .Venv }}</> {{ end }}{{ .Full }}{{ end }}",
+                    "trailing_diamond": "\ue0b4",
+                    "type": "python"
+                },
+                {
+                    "background": "#424242",
+                    "foreground": "#ffffff",
+                    "invert_powerline": true,
+                    "leading_diamond": " \ue0b6",
+                    "style": "diamond",
+                    "template": " \uf5ef {{ .CurrentDate | date .Format }} ",
+                    "trailing_diamond": "\ue0b4",
+                    "type": "time"
+                },
+                {
+                    "foreground": "red",
+                    "style": "plain",
+                    "template": " C:{{ if gt .Code 0 }}{{ .Code }}{{ end }} ",
+                    "type": "exit"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "foreground": "lightRed",
+                    "style": "plain",
+                    "template": "$",
+                    "type": "text"
+                }
+            ],
+            "type": "prompt"
+        }
+    ],
+    "final_space": true,
+    "version": 2
+}
