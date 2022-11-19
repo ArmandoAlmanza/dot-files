@@ -67,16 +67,6 @@
                     "type": "python"
                 },
                 {
-                    "background": "#424242",
-                    "foreground": "#ffffff",
-                    "invert_powerline": true,
-                    "leading_diamond": " \ue0b6",
-                    "style": "diamond",
-                    "template": " \uf5ef {{ .CurrentDate | date .Format }} ",
-                    "trailing_diamond": "\ue0b4",
-                    "type": "time"
-                },
-                {
                     "foreground": "red",
                     "style": "plain",
                     "template": " C:{{ if gt .Code 0 }}{{ .Code }}{{ end }} ",
@@ -89,6 +79,34 @@
             "alignment": "left",
             "newline": true,
             "segments": [
+                {
+                    "foreground": "#9B6BDF",
+                    "style": "plain",
+                    "template": "<b>\u256d\u2500| </b>",
+                    "type": "text"
+                },
+                {
+                    "foreground": "#F2D3B6",
+                    "properties": {
+                        "time_format": "<#D6DEEB><b>\uf64f 15:04:05</b></> <#79DFE1> - </><b> \uf5ef 2 Jan, Monday</b>"
+                    },
+                    "style": "plain",
+                    "template": "{{ .CurrentDate | date .Format }} <#79DFE1></>",
+                    "type": "time"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "foreground": "#9B6BDF",
+                    "style": "plain",
+                    "template": "<b>\u2570\u2500</b>",
+                    "type": "text"
+                },
                 {
                     "foreground": "lightRed",
                     "style": "plain",
