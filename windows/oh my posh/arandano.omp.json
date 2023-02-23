@@ -30,8 +30,12 @@
                     "background": "#424242",
                     "foreground": "#43CCEA",
                     "leading_diamond": " \ue0b6",
+                    "properties": {
+                        "fetch_stash_count": true,
+                        "fetch_status": true
+                    },
                     "style": "diamond",
-                    "template": "On {{.UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}",
+                    "template": "On <#ffffff>{{ .UpstreamIcon }}</>{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#ffffff>\uf044</> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <#ffffff>\uf046</> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <#ffffff>\uf692</> {{ .StashCount }}{{ end }}",
                     "trailing_diamond": "\ue0b4",
                     "type": "git"
                 },
@@ -60,9 +64,9 @@
                     "style": "diamond",
                     "properties": {
                         "display_mode": "files",
-                        "fetch_virtual_env": false
+                        "fetch_virtual_env": true
                     },
-                    "template": "\uE235{{ if .Error }}{{ .Error }}{{ else }} <#FFE9AE>{{ if .Venv }}{{ .Venv }}</> {{ end }}{{ .Full }}{{ end }}",
+                    "template": "\uE235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
                     "trailing_diamond": "\ue0b4",
                     "type": "python"
                 },
@@ -79,34 +83,6 @@
             "alignment": "left",
             "newline": true,
             "segments": [
-                {
-                    "foreground": "#9B6BDF",
-                    "style": "plain",
-                    "template": "<b>\u256d\u2500| </b>",
-                    "type": "text"
-                },
-                {
-                    "foreground": "#F2D3B6",
-                    "properties": {
-                        "time_format": "<#D6DEEB><b>\uf64f 15:04:05</b></> <#79DFE1> - </><b> \uf5ef 2 Jan, Monday</b>"
-                    },
-                    "style": "plain",
-                    "template": "{{ .CurrentDate | date .Format }} <#79DFE1></>",
-                    "type": "time"
-                }
-            ],
-            "type": "prompt"
-        },
-        {
-            "alignment": "left",
-            "newline": true,
-            "segments": [
-                {
-                    "foreground": "#9B6BDF",
-                    "style": "plain",
-                    "template": "<b>\u2570\u2500</b>",
-                    "type": "text"
-                },
                 {
                     "foreground": "lightRed",
                     "style": "plain",
