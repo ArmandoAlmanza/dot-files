@@ -1,7 +1,6 @@
 [user]
         name = Armando Almanza
-        email = armando.s.almanza@gmail.com
-
+        email = 
 
 [alias]
         l = log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow)%an%C(reset) %C(cyan)(%ae)%C(reset) - %C(green)%s%C(reset) %C(magenta)(%ar)%C(reset)'
