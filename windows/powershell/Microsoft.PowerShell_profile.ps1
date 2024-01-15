@@ -37,50 +37,61 @@ function ch {code (get-location)}
 
   # Npm functions
 function nd {npm run dev}
-function nb {npm run build}
-
-  # Vite Function
-function vit {
-  param(
-    $name, $template
-  )
-  npm init vite@latest $name -- --template $template
-}
 
   # cd functions
 function dev {
-  param (
-    $project
-  )
-  cd D:\Dev\$project
+    param (
+        [string]$project
+    )
+
+    if (-not $project) {
+        $project = "Dev"
+    }
+
+    $path = "D:\Dev\$project"
+
+    if (Test-Path $path -PathType Container) {
+        Set-Location $path
+    } elseif (Test-Path "D:\Dev" -PathType Container) {
+        Set-Location "D:\Dev"
+    } else {
+        Write-Host "La carpeta $project no existe en D:\Dev y no se encontró la carpeta por defecto."
+    }
 }
 
-function esc {
-  param (
-    $materia, $parcial
-  )
-  cd D:\Escuela\$materia\$parcial
+# Instalar requirements.txt
+
+function envi {
+    param (
+        [string]$requirementsFile = "requirements.txt"
+    )
+
+    # Verificar si el archivo requirements.txt existe
+    if (-not (Test-Path $requirementsFile -PathType Leaf)) {
+        Write-Host "El archivo $requirementsFile no se encontró."
+        return
+    }
+
+    # Instalar dependencias
+    pip install -r $requirementsFile
+
+    Write-Host "Dependencias instaladas correctamente."
 }
 
-# Copiar configuraciones y estilos por defecto
-function cvi {
+# Instalar node modules y abrir vscode
 
-  param(
-    $language
-  )
+function nInstall {
+    $rutaProyecto = Get-Item -Path .\ -Verbose
 
-  if($language -eq "react"){
-    copy D:\Dev\Config\$language\vite.config.js (get-location)
-  }  
-  if($language -eq "react-ts") {
-    copy D:\Dev\Config\$language\* (get-location)
-  }   
-  if($language -eq "vue") {
-    copy D:\Dev\Config\$language\vite.config.js (get-location)
-  } 
-  if($language -eq "vue-ts") {
-    copy D:\Dev\Config\$language\* (get-location)
-  } 
+    if (-not (Test-Path -Path "$($rutaProyecto.FullName)\node_modules")) {
+        Write-Host "Instalando paquetes npm..."
+        npm install
+    } else {
+        Write-Host "La carpeta 'node_modules' ya existe."
+    }
+
+    Write-Host "Abriendo Visual Studio Code..."
+    code .
 }
 
 # function cs {
